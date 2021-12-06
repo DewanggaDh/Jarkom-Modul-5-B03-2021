@@ -1,3 +1,18 @@
+### NID Network
+
+```
+A1: 192.178.0.0/29
+A2: 192.178.8.0/25
+A3: 192.178.16.0/30
+A4: 192.178.4.0/22
+A5: 192.178.36.0/30
+A6: 192.178.34.0/23
+A7: 192.178.32.0/24
+A8: 192.178.33.0/29
+```
+
+### Konfigurasi Network Interface
+
 #### FOOSHA
 
 ```
@@ -172,4 +187,29 @@ iface eth0 inet static
 	netmask 255.255.255.248
         gateway 192.178.33.1
         up echo nameserver 192.168.122.1 > /etc/resolv.conf
+```
+
+### Konfigurasi Routing
+
+#### FOOSHA
+
+```
+route add -net 192.178.0.0 netmask 255.255.255.248 gw 192.178.64.2 #A3 - A1
+route add -net 192.178.8.0 netmask 255.255.255.128 gw 192.178.64.2 #A3 - A2
+route add -net 192.178.4.0 netmask 255.255.252.0 gw 192.178.64.2 #A3 - A4
+route add -net 192.178.34.0 netmask 255.255.254.0 gw 192.178.36.2 #A5 - A6
+route add -net 192.178.32.0 netmask 255.255.255.0 gw 192.178.36.2 #A5 - A7
+route add -net 192.178.33.0 netmask 255.255.255.248 gw 192.178.36.2 #A5 - A8
+```
+
+#### WATER7
+
+```
+route add -net 0.0.0.0 netmask 0.0.0.0 gw 192.178.16.1 #A3 - Self
+```
+
+#### GUANHAO
+
+```
+route add -net 0.0.0.0 netmask 0.0.0.0 gw 192.178.36.1 #A5 - Self
 ```
