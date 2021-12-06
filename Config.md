@@ -194,9 +194,9 @@ iface eth0 inet static
 #### FOOSHA
 
 ```
-route add -net 192.178.0.0 netmask 255.255.255.248 gw 192.178.64.2 #A3 - A1
-route add -net 192.178.8.0 netmask 255.255.255.128 gw 192.178.64.2 #A3 - A2
-route add -net 192.178.4.0 netmask 255.255.252.0 gw 192.178.64.2 #A3 - A4
+route add -net 192.178.0.0 netmask 255.255.255.248 gw 192.178.16.2 #A3 - A1
+route add -net 192.178.8.0 netmask 255.255.255.128 gw 192.178.16.2 #A3 - A2
+route add -net 192.178.4.0 netmask 255.255.252.0 gw 192.178.16.2 #A3 - A4
 route add -net 192.178.34.0 netmask 255.255.254.0 gw 192.178.36.2 #A5 - A6
 route add -net 192.178.32.0 netmask 255.255.255.0 gw 192.178.36.2 #A5 - A7
 route add -net 192.178.33.0 netmask 255.255.255.248 gw 192.178.36.2 #A5 - A8
