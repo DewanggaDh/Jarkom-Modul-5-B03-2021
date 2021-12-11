@@ -254,7 +254,7 @@ Kemudian pada JIPANGU edit pada `/etc/default/isc-dhcp-server` edit line interfa
 INTERFACES="eth0"
 ```
 
-Kemudian pada JIPANGU edit pada `/etc/dhcp/dhcpd.conf`. Tambahkan line berikut.
+Kemudian pada JIPANGU edit pada `/etc/dhcp/dhcpd.conf`. Tambahkan line berikut. Dengan `192.178.0.2` adalah IP DNS Server DORIKI dan `192.168.122.1` merupakan nameserver NAT pada `/etc/resolv.conf` pada FOOSHA.
 
 ```
 subnet 192.178.0.0 netmask 255.255.252.0 {
@@ -266,7 +266,7 @@ subnet 192.178.8.0 netmask 255.255.255.128 {
         range 192.178.8.2 192.178.8.127;
         option routers 192.178.8.1;
         option broadcast-address 192.178.8.128;
-        option domain-name-servers 192.168.122.1;
+        option domain-name-servers 192.178.0.2, 192.168.122.1;
 }
 
 # CIPHER : A4: 192.178.4.0/22 - 700 Host
@@ -274,7 +274,7 @@ subnet 192.178.4.0 netmask 255.255.252.0 {
         range 192.178.4.2 192.178.7.254;
         option routers 192.178.4.1;
         option broadcast-address 192.178.7.255;
-        option domain-name-servers 192.168.122.1;
+        option domain-name-servers 192.178.0.2, 192.168.122.1;
 }
 
 # ELENA : A6: 192.178.34.0/23 - 300 Host
@@ -282,7 +282,7 @@ subnet 192.178.34.0 netmask 255.255.254.0 {
         range 192.178.34.2 192.178.35.254;
        option routers 192.178.34.1;
         option broadcast-address 192.178.35.255;
-        option domain-name-servers 192.168.122.1;
+        option domain-name-servers 192.178.0.2, 192.168.122.1;
 }
 
 # FUKUROU : A7: 192.178.32.0/24 - 200 Host
@@ -290,7 +290,7 @@ subnet 192.178.32.0 netmask 255.255.255.0 {
         range 192.178.32.2 192.178.32.254;
         option routers 192.178.32.1;
         option broadcast-address 192.178.32.255;
-        option domain-name-servers 192.168.122.1;
+        option domain-name-servers 192.178.0.2, 192.168.122.1;
 }
 ```
 
@@ -298,6 +298,18 @@ Kemudian start DHCP server pada JIPANGU dengan command berikut.
 
 ```
 service isc-dhcp-server start
+```
+
+Pada FOOSHA, WATER7 dan GUANHAO edit pada `/etc/default/isc-dhcp-relay`. Pada bagian servers, ganti dengan IP Jipangu.
+
+```
+SERVERS="192.178.0.3"
+```
+
+Kemudian restart isc-dhcp-relay tersebut dengan command berikut.
+
+```
+service isc-dhcp-relay restart
 ```
 
 ## Soal Shift
