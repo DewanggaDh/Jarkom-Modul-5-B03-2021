@@ -478,11 +478,23 @@ Sehingga untuk setiap node yang akses JIPANGU dan DORIKI ketika mereka memiliki 
 
 ### Soal 4
 
-Akses dari subnet Blueno dan Cipher hanya diperbolehkan pada pukul 07.00 - 15.00 pada hari Senin sampai Kamis.
+Akses DORIKI dari subnet Blueno dan Cipher hanya diperbolehkan pada pukul 07.00 - 15.00 pada hari Senin sampai Kamis.
 
 #### Penjelasan
 
-Jadi begini.
+Agar BLUENO dan CIPHER tidak dapat akses DORIKI pada jadwal tertentu maka pada DORIKI (DNS Server) kita tambahkan rule iptables berikut.
+
+```
+# BLUENO
+iptables -A INPUT -s 192.178.8.0/25 -m time --timestart 07:00 --timestop 15:00 --weekdays Mon,Tue,Wed,Thu -j ACCEPT
+iptables -A INPUT -s 192.178.8.0/25 -j REJECT
+
+# CIPHER
+iptables -A INPUT -s 192.178.4.0/22 -m time --timestart 07:00 --timestop 15:00 --weekdays Mon,Tue,Wed,Thu -j ACCEPT
+iptables -A INPUT -s 192.178.4.0/22 -j REJECT
+```
+
+Sehingga pada jam tersebut akses akan diperbolehkan dan selain itu akan ditolak.
 
 ### Soal 5
 
@@ -490,7 +502,19 @@ Akses dari subnet Elena dan Fukuro hanya diperbolehkan pada pukul 15.01 hingga p
 
 #### Penjelasan
 
-Jadi begini.
+Agar ELENA dan FUKUROU tidak dapat akses DORIKI pada jadwal tertentu maka pada DORIKI (DNS Server) kita tambahkan rule iptables berikut.
+
+```
+# ELENA
+iptables -A INPUT -s 192.178.34.0/23 -m time --timestart 00:00 --timestop 06:59 -j ACCEPT
+iptables -A INPUT -s 192.178.34.0/23 -m time --timestart 15:01 --timestop 23:59 -j ACCEPT
+iptables -A INPUT -s 192.178.34.0/23 -j REJECT
+
+# FUKUROU
+iptables -A INPUT -s 192.178.32.0/23 -m time --timestart 00:00 --timestop 06:59 -j ACCEPT
+iptables -A INPUT -s 192.178.32.0/23 -m time --timestart 15:01 --timestop 23:59 -j ACCEPT
+iptables -A INPUT -s 192.178.32.0/23 -j REJECT
+```
 
 ### Soal 6
 
