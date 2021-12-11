@@ -522,7 +522,13 @@ Karena kita memiliki 2 Web Server, Luffy ingin Guanhao disetting sehingga setiap
 
 #### Penjelasan
 
-Jadi begini.
+Soal 6 masih belum selesai karena keterbatasan waktu dan ketidak pahaman.
+
+## Kendala
+- Masih bingung antara DROP dan REJECT.
+- Masih bingung penggunaan chain apakah menggunakan operasi OR atau AND.
+- Masih bingung cara pemanfaatan nmap secara optimal.
+- Nomor 6 masih belum selesai.
 
 ## Referensi
 - https://qastack.id/raspberrypi/8614/isc-dhcp-server-install-and-run-problem
