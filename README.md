@@ -468,7 +468,13 @@ Karena kelompok kalian maksimal terdiri dari 3 orang. Luffy meminta kalian untuk
 
 #### Penjelasan
 
-Jadi begini.
+Agar DHCP Server dan DNS Server tidak dapat menerima akses lebih dari 3 ICMP dari saat yang bersamaan maka pada JIPANGU (DHCP Server) dan DORIKI (DNS Server) kita tambahkan rule iptables berikut.
+
+```
+iptables -A INPUT -p icmp -m connlimit --connlimit-above 3 --icmp-type echo-request -j REJECT
+```
+
+Sehingga untuk setiap node yang akses JIPANGU dan DORIKI ketika mereka memiliki 3 koneksi ICMP akan di reject.
 
 ### Soal 4
 
