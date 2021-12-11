@@ -224,6 +224,82 @@ route add -net 0.0.0.0 netmask 0.0.0.0 gw 192.178.16.1 #A3 - Self
 route add -net 0.0.0.0 netmask 0.0.0.0 gw 192.178.36.1 #A5 - Self
 ```
 
+## Prerequisites
+
+Jalankan iptables MASQUERADE pada FOOSHA dan routing nya agar subnet dapat akses internet.
+
+```
+iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE -s 192.178.0.0/16
+```
+
+Setelah itu kita install hal - hal yang diperlukan untuk masing - masing node.
+
+Buat DHCP Relay pada router FOOSHA, WATER7 dan GUANHAO dengan command berikut. Jika muncul suatu interpreter tekan enter hingga kembali pada terminal.
+
+```
+apt-get update
+apt-get install isc-dhcp-relay -y
+```
+
+Kemudian install DHCP server pada JIPANGU dengan command berikut. Jika muncul suatu interpreter tekan enter hingga kembali pada terminal.
+
+```
+apt-get update
+apt-get install isc-dhcp-server -y
+```
+
+Kemudian pada JIPANGU edit pada `/etc/default/isc-dhcp-server` edit line interface menjadi berikut.
+
+```
+INTERFACES="eth0"
+```
+
+Kemudian pada JIPANGU edit pada `/etc/dhcp/dhcpd.conf`. Tambahkan line berikut.
+
+```
+subnet 192.178.0.0 netmask 255.255.252.0 {
+
+}
+
+# BLUENO : A2: 192.178.8.0/25 - 100 Host
+subnet 192.178.8.0 netmask 255.255.255.128 {
+        range 192.178.8.2 192.178.8.127;
+        option routers 192.178.8.1;
+        option broadcast-address 192.178.8.128;
+        option domain-name-servers 192.168.122.1;
+}
+
+# CIPHER : A4: 192.178.4.0/22 - 700 Host
+subnet 192.178.4.0 netmask 255.255.252.0 { 
+        range 192.178.4.2 192.178.7.254;
+        option routers 192.178.4.1;
+        option broadcast-address 192.178.7.255;
+        option domain-name-servers 192.168.122.1;
+}
+
+# ELENA : A6: 192.178.34.0/23 - 300 Host
+subnet 192.178.34.0 netmask 255.255.254.0 { 
+        range 192.178.34.2 192.178.35.254;
+       option routers 192.178.34.1;
+        option broadcast-address 192.178.35.255;
+        option domain-name-servers 192.168.122.1;
+}
+
+# FUKUROU : A7: 192.178.32.0/24 - 200 Host
+subnet 192.178.32.0 netmask 255.255.255.0 { 
+        range 192.178.32.2 192.178.32.254;
+        option routers 192.178.32.1;
+        option broadcast-address 192.178.32.255;
+        option domain-name-servers 192.168.122.1;
+}
+```
+
+Kemudian start DHCP server pada JIPANGU dengan command berikut.
+
+```
+service isc-dhcp-server start
+```
+
 ## Soal Shift
 
 ### Soal 1
@@ -232,7 +308,31 @@ Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk meng
 
 #### Penjelasan
 
-Jadi begini.
+Pada FOOSHA kita drop IPTABLES MASQUERADE dengan command berikut. Command berikut akan menghapus seluruh rules yang ada pada NAT.
+
+```
+iptables -t nat -F
+```
+
+Kemudian agar subnet dapat mengakses internet jalankan command berikut. Dengan `NAT_NET` merupakan variable yang berisi IP Address dari eth0 FOOSHA (yang terhubung dengan internet).
+
+```
+NAT_NET=192.168.122.14
+
+# A3: Water7
+iptables -t nat -A POSTROUTING -s 192.178.16.0/30 -o eth0 -j SNAT --to-source $NAT_NET
+
+# A5: Guanhao
+iptables -t nat -A POSTROUTING -s 192.178.36.0/30 -o eth0 -j SNAT --to-source $NAT_NET
+
+# A1: Dokiri, Jipangu
+iptables -t nat -A POSTROUTING -s 192.178.0.0/29 -o eth0 -j SNAT --to-source $NAT_NET
+
+# A8: Jorge, MainGate
+iptables -t nat -A POSTROUTING -s 192.178.33.0/29 -o eth0 -j SNAT --to-source $NAT_NET
+```
+
+Setelah itu dapat dilakukan test ping dari seluruh node yang ada.
 
 ### Soal 2
 
