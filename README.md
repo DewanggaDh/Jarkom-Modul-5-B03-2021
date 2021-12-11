@@ -342,9 +342,65 @@ iptables -t nat -A POSTROUTING -s 192.178.0.0/29 -o eth0 -j SNAT --to-source $NA
 
 # A8: Jorge, MainGate
 iptables -t nat -A POSTROUTING -s 192.178.33.0/29 -o eth0 -j SNAT --to-source $NAT_NET
+
+# A2: BluEno
+iptables -t nat -A POSTROUTING -s 192.178.8.0/25 -o eth0 -j SNAT --to-source $NAT_NET
+
+# A4: Cipher
+iptables -t nat -A POSTROUTING -s 192.178.4.0/22 -o eth0 -j SNAT --to-source $NAT_NET
+
+# A6: Elena
+iptables -t nat -A POSTROUTING -s 192.178.34.0/23 -o eth0 -j SNAT --to-source $NAT_NET
+
+# A7: Fukurou
+iptables -t nat -A POSTROUTING -s 192.178.32.0/24 -o eth0 -j SNAT --to-source $NAT_NET
 ```
 
 Setelah itu dapat dilakukan test ping dari seluruh node yang ada.
+
+- FOOSHA
+
+![image](https://user-images.githubusercontent.com/16128257/145674708-c062e16d-0718-416b-af7a-eaa0b004956b.png)
+
+- GUANHAO
+
+![image](https://user-images.githubusercontent.com/16128257/145674720-43348cd5-374d-4fd4-a184-ae0ef153db5b.png)
+
+- WATER7
+
+![image](https://user-images.githubusercontent.com/16128257/145674803-a65af01b-c735-490f-8712-5b5d67f5f83b.png)
+
+- JIPANGU
+
+![image](https://user-images.githubusercontent.com/16128257/145674835-c4ed12b0-1c87-42cf-842c-ea560f51f411.png)
+
+- DORIKI
+
+![image](https://user-images.githubusercontent.com/16128257/145674862-ae73059e-41b5-4dea-97bc-439f54926c7c.png)
+
+- JORGE
+
+![image](https://user-images.githubusercontent.com/16128257/145674880-dadf6372-e003-48bd-b29b-f2d46dd5e8b4.png)
+
+- MAINGATE
+
+![image](https://user-images.githubusercontent.com/16128257/145674897-94c01b60-abf9-488d-888c-1fa6920dba88.png)
+
+- ELENA
+
+![image](https://user-images.githubusercontent.com/16128257/145675191-daf1ba0b-1085-4a77-a461-df369749de93.png)
+
+- CIPHER
+
+![image](https://user-images.githubusercontent.com/16128257/145675216-b01b10af-b4a0-4c83-96bd-ec4fe261d0d1.png)
+
+- FUKUROU
+
+![image](https://user-images.githubusercontent.com/16128257/145675242-8c33ab7e-e1cf-4b70-9c50-6aca8105e151.png)
+
+- BLUENO
+
+![image](https://user-images.githubusercontent.com/16128257/145675283-3cab8f78-4cff-4333-8e35-760c36654116.png)
 
 ### Soal 2
 
