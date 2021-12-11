@@ -408,7 +408,59 @@ Kalian diminta untuk mendrop semua akses HTTP dari luar Topologi kalian pada ser
 
 #### Penjelasan
 
-Jadi begini.
+Agar DHCP Server dan DNS Server tidak dapat menerima akses protokol HTTP maka pada JIPANGU (DHCP Server) dan DORIKI (DNS Server) kita tambahkan rule iptables berikut.
+
+```
+iptables -A INPUT -p tcp --dport 80 -j DROP
+```
+
+Sehingga untuk setiap node yang akses JIPANGU dan DORIKI pada port 80 HTTP akan di drop.
+
+Kemudian lakukan test ping pada node yang lainnya. Dengan `192.178.0.2` adalah DORIKI dan `192.178.0.3` adalah JIPANGU.
+
+- FOOSHA
+
+![image](https://user-images.githubusercontent.com/16128257/145675723-085a3cf6-929a-4e62-84c9-c7aacc8e0c43.png)
+
+- GUANHAO
+
+![image](https://user-images.githubusercontent.com/16128257/145675767-02023f84-6a91-4dd5-a99a-f90a9224da86.png)
+
+- WATER7
+
+![image](https://user-images.githubusercontent.com/16128257/145675810-05b4acfb-8cc7-4f18-8911-6870c8ca282d.png)
+
+- JIPANGU
+
+![image](https://user-images.githubusercontent.com/16128257/145675826-162119b5-c5a6-4d28-9afd-d731407a5a4a.png)
+
+- DORIKI
+
+![image](https://user-images.githubusercontent.com/16128257/145675844-71469943-4080-44f0-b001-d141918344d7.png)
+
+- JORGE
+
+![image](https://user-images.githubusercontent.com/16128257/145675872-7f49076a-d678-4518-b531-c31127be3b83.png)
+
+- MAINGATE
+
+![image](https://user-images.githubusercontent.com/16128257/145675886-7deca775-6f74-4e54-a11f-97f080a7d08d.png)
+
+- ELENA
+
+![image](https://user-images.githubusercontent.com/16128257/145675923-f7d6d054-5b3b-4e76-82d1-ce3e59d6a99e.png)
+
+- CIPHER
+
+![image](https://user-images.githubusercontent.com/16128257/145675989-dde6f4de-c4fb-4652-99fa-ccb06b9e983f.png)
+
+- FUKUROU
+
+![image](https://user-images.githubusercontent.com/16128257/145675995-ab2bf3fa-038e-4465-b3ec-06735b975b70.png)
+
+- BLUENO
+
+![image](https://user-images.githubusercontent.com/16128257/145676011-271c4eb4-7a94-4e56-a873-41d51a112da7.png)
 
 ### Soal 3
 
