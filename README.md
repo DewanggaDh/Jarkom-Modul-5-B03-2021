@@ -240,6 +240,55 @@ route add -net 0.0.0.0 netmask 0.0.0.0 gw 192.178.16.1 #A3 - Self
 route add -net 0.0.0.0 netmask 0.0.0.0 gw 192.178.36.1 #A5 - Self
 ```
 
+## Soal Shift
+
+### Soal 1
+
+Agar topologi yang kalian buat dapat mengakses keluar, kalian diminta untuk mengkonfigurasi Foosha menggunakan iptables, tetapi Luffy tidak ingin menggunakan MASQUERADE.
+
+#### Penjelasan
+
+Jadi begini.
+
+### Soal 2
+
+Kalian diminta untuk mendrop semua akses HTTP dari luar Topologi kalian pada server yang merupakan DHCP Server dan DNS Server demi menjaga keamanan.
+
+#### Penjelasan
+
+Jadi begini.
+
+### Soal 3
+
+Karena kelompok kalian maksimal terdiri dari 3 orang. Luffy meminta kalian untuk membatasi DHCP dan DNS Server hanya boleh menerima maksimal 3 koneksi ICMP secara bersamaan menggunakan iptables, selebihnya didrop.
+
+#### Penjelasan
+
+Jadi begini.
+
+### Soal 4
+
+Akses dari subnet Blueno dan Cipher hanya diperbolehkan pada pukul 07.00 - 15.00 pada hari Senin sampai Kamis.
+
+#### Penjelasan
+
+Jadi begini.
+
+### Soal 5
+
+Akses dari subnet Elena dan Fukuro hanya diperbolehkan pada pukul 15.01 hingga pukul 06.59 setiap harinya.
+
+#### Penjelasan
+
+Jadi begini.
+
+### Soal 6
+
+Karena kita memiliki 2 Web Server, Luffy ingin Guanhao disetting sehingga setiap request dari client yang mengakses DNS Server akan didistribusikan secara bergantian pada Jorge dan Maingate
+
+#### Penjelasan
+
+Jadi begini.
 
 ## Referensi
 - https://qastack.id/raspberrypi/8614/isc-dhcp-server-install-and-run-problem
