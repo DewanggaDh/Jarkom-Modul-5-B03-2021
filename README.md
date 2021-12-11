@@ -2,7 +2,7 @@
 
 Anggota Kelompok:
 1. Ahmad Syafiq Aqil Wafi (05111940000089)
-2. 
+2. Dewangga Dharmawan (05111940000029)
 
 ## Subnetting
 
