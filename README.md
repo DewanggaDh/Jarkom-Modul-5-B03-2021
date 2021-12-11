@@ -93,11 +93,7 @@ iface eth3 inet static
 ```
 # A2: 192.178.8.0/25
 auto eth0
-iface eth0 inet static
-	address 192.178.8.2
-	netmask 255.255.255.128
-        gateway 192.178.8.1
-        up echo nameserver 192.168.122.1 > /etc/resolv.conf
+iface eth0 inet dhcp
 ```
 
 #### CIPHER
@@ -105,11 +101,7 @@ iface eth0 inet static
 ```
 # A4: 192.178.4.0/22
 auto eth0
-iface eth0 inet static
-	address 192.178.4.2
-	netmask 255.255.252.0
-        gateway 192.178.4.1
-        up echo nameserver 192.168.122.1 > /etc/resolv.conf
+iface eth0 inet dhcp
 ```
 
 
@@ -172,11 +164,7 @@ iface eth3 inet static
 ```
 # A6: 192.178.34.0/23
 auto eth0
-iface eth0 inet static
-	address 192.178.34.2
-	netmask 255.255.254.0
-        gateway 192.178.34.1
-        up echo nameserver 192.168.122.1 > /etc/resolv.conf
+iface eth0 inet dhcp
 ```
 
 #### FUKUROU
@@ -184,11 +172,7 @@ iface eth0 inet static
 ```
 # A7: 192.178.32.0/24
 auto eth0
-iface eth0 inet static
-	address 192.178.32.2
-	netmask 255.255.255.0
-        gateway 192.178.32.1
-        up echo nameserver 192.168.122.1 > /etc/resolv.conf
+iface eth0 inet dhcp
 ```
 
 #### JORGE
